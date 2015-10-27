@@ -17,7 +17,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 # TODO: Modify to use one of the techniques described in https://packaging.python.org/en/latest/single_source_version.html
 # imports __version__ into the local namespace
-version_file = os.path.join(os.path.dirname(__file__), 'metaheuristic_algorithms/version.py')
+version_file = path.join(path.dirname(__file__), 'metaheuristic_algorithms/version.py')
 with open(version_file, 'r') as f:
     exec(f.read())
 
@@ -53,7 +53,7 @@ setup(
 
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
-        'Topic :: Control :: Optimization :: Software Development',
+        'Topic :: Scientific/Engineering',
 
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: MIT License',
@@ -75,7 +75,9 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    # packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    # packages=find_packages(exclude=['tests']),
+    packages=['metaheuristic_algorithms'], 
 
     # Alternatively, if you want to distribute just a my_module.py, uncomment
     # this:
