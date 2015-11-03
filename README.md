@@ -26,6 +26,8 @@ It's not tested on Python 2.6 or 2.7 yet.
 
 * Harmony Search
 
+* Simplified Particle Swarm Optimization
+
 ## Usage
 
 
