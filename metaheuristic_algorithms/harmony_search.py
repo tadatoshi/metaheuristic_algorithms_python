@@ -4,9 +4,6 @@ import random
 class HarmonySearch(BaseAlgorithm):
 
     def __init__(self, function_wrapper, number_of_variables = 1, objective = "maximization"):
-
-        print("In HarmonySearch")
-
         super().__init__(function_wrapper, number_of_variables, objective)
 
     def search(self, maximum_attempt = 2500, pitch_adjusting_range = 100, 
@@ -21,7 +18,7 @@ class HarmonySearch(BaseAlgorithm):
 
             best_function_value = self.function_wrapper.objective_function_value(decision_variable_values) 
 
-            sampled_best_function_value = self.__sample_best_function_value()
+            sampled_best_function_value = super(HarmonySearch, self).best_function_value_from_list(self.__best_function_value_harmony_memory)
 
             if self.__compare_best_function_value(best_function_value, sampled_best_function_value):
 
@@ -33,7 +30,7 @@ class HarmonySearch(BaseAlgorithm):
                 self.__harmony_memory[self.__harmony_memory_random_index] = decision_variable_values
                 self.__best_function_value_harmony_memory[self.__harmony_memory_random_index] = best_function_value
 
-        objective_function_value = self.__sample_best_function_value()
+        objective_function_value = super(HarmonySearch, self).best_function_value_from_list(self.__best_function_value_harmony_memory)
         decision_variable_values = self.__harmony_memory[self.__best_function_value_harmony_memory.index(objective_function_value)]
 
         return { "best_decision_variable_values": decision_variable_values, "best_objective_function_value": objective_function_value }
@@ -66,20 +63,6 @@ class HarmonySearch(BaseAlgorithm):
               decision_variable_value = decision_variable_value + pitch_adjusting * (random.random() -0.5)
 
         return decision_variable_value
-
-    # max(self.__best_function_value_harmony_memory) or min(self.__best_function_value_harmony_memory)
-    def __sample_best_function_value(self):
-
-        if self.objective == "maximization":
-            sampled_best_function_value = max(self.__best_function_value_harmony_memory)
-        elif self.objective == "minimization":
-            sampled_best_function_value = min(self.__best_function_value_harmony_memory)
-
-        # Note: eval seems to work only on object attributes not method:
-        # best_function_value_sampling_statement = '%(method_name)s(self.__best_function_value_harmony_memory)' % {"method_name": self.objective_method_name}
-        # return eval(best_function_value_sampling_statement)            
-
-        return sampled_best_function_value
 
     # best_function_value > sampled_best_function_value or best_function_value < sampled_best_function_value
     def __compare_best_function_value(self, best_function_value, sampled_best_function_value):

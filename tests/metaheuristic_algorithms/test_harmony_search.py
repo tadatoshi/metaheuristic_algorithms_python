@@ -19,13 +19,13 @@ class TestHarmonySearch(unittest.TestCase):
         harmony_memory_acceping_rate = 0.95
         pitch_adjusting_rate = 0.7
 
-        result = harmony_search.search(maximum_attempt, pitch_adjusting_range, 
-                                       harmony_search_size, harmony_memory_acceping_rate, 
-                                       pitch_adjusting_rate)
+        result = harmony_search.search(maximum_attempt = maximum_attempt, pitch_adjusting_range = pitch_adjusting_range, 
+                                       harmony_search_size = harmony_search_size, harmony_memory_acceping_rate = harmony_memory_acceping_rate, 
+                                       pitch_adjusting_rate = pitch_adjusting_rate)
 
-        self.assertAlmostEqual(result["best_decision_variable_values"][0], 1.0112, 0)
-        self.assertAlmostEqual(result["best_decision_variable_values"][1], 0.9988, 0)
-        self.assertAlmostEqual(result["best_objective_function_value"], 0.0563, 0)
+        self.assertAlmostEqual(result["best_decision_variable_values"][0], 1.0112, delta = 1)
+        self.assertAlmostEqual(result["best_decision_variable_values"][1], 0.9988, delta = 1)
+        self.assertAlmostEqual(result["best_objective_function_value"], 0.0563, delta = 1)
 
 if __name__ == '__main__':
     unittest.main()        
