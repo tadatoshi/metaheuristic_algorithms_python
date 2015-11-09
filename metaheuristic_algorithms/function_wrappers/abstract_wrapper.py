@@ -10,7 +10,7 @@ class AbstractWrapper(object):
 
     # Return value: Array
     @abstractmethod
-    def miminum_decision_variable_values(self):
+    def minimum_decision_variable_values(self):
       pass 
 
     # Input value: Array

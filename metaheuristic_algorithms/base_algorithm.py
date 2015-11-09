@@ -19,7 +19,7 @@ class BaseAlgorithm(object):
         #     self.objective_comparison_operator = "<" 
 
     def get_decision_variable_value_by_randomization(self, decision_variable_index):
-        return self.function_wrapper.miminum_decision_variable_values()[decision_variable_index] + (self.function_wrapper.maximum_decision_variable_values()[decision_variable_index] - self.function_wrapper.miminum_decision_variable_values()[decision_variable_index]) * random.random()
+        return self.function_wrapper.minimum_decision_variable_values()[decision_variable_index] + (self.function_wrapper.maximum_decision_variable_values()[decision_variable_index] - self.function_wrapper.minimum_decision_variable_values()[decision_variable_index]) * random.random()
 
     # max(function_values) or min(function_values)
     def best_function_value_from_list(self, function_values):
@@ -29,4 +29,4 @@ class BaseAlgorithm(object):
         elif self.objective == "minimization":
             best_function_value = min(function_values)
 
-        return best_function_value        
+        return best_function_value

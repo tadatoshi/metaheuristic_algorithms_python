@@ -59,7 +59,7 @@ class HarmonySearch(BaseAlgorithm):
             decision_variable_value = self.__harmony_memory[self.__harmony_memory_random_index][variable_index]
             
             if random.random() < pitch_adjusting_rate:
-              pitch_adjusting = (self.function_wrapper.maximum_decision_variable_values()[variable_index] - self.function_wrapper.miminum_decision_variable_values()[variable_index]) / pitch_adjusting_range
+              pitch_adjusting = (self.function_wrapper.maximum_decision_variable_values()[variable_index] - self.function_wrapper.minimum_decision_variable_values()[variable_index]) / pitch_adjusting_range
               decision_variable_value = decision_variable_value + pitch_adjusting * (random.random() -0.5)
 
         return decision_variable_value

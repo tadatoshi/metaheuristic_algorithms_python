@@ -5,7 +5,7 @@ class RosenbrookFunctionWrapper(AbstractWrapper):
     def maximum_decision_variable_values(self):
         return [5, 5]
 
-    def miminum_decision_variable_values(self):
+    def minimum_decision_variable_values(self):
         return [-5, -5]
 
     def objective_function_value(self, decision_variable_values):

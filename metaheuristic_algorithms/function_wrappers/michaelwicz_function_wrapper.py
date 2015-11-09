@@ -6,7 +6,7 @@ class MichaelwiczFunctionWrapper(AbstractWrapper):
     def maximum_decision_variable_values(self):
         return [4, 4]
 
-    def miminum_decision_variable_values(self):
+    def minimum_decision_variable_values(self):
         return [0, 0]
 
     def objective_function_value(self, decision_variable_values):

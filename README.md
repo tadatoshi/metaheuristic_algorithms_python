@@ -28,6 +28,8 @@ It's not tested on Python 2.6 or 2.7 yet.
 
 * Simplified Particle Swarm Optimization
 
+* Simulated Annealing
+
 ## Usage
 
 Step 1. Create a Function Wrapper for your objective function by extending MetaheuristicAlgorithms::FunctionWrappers::AbstractWrapper
@@ -42,7 +44,7 @@ Step 1. Create a Function Wrapper for your objective function by extending Metah
         def maximum_decision_variable_values(self):
             return [5, 5]
 
-        def miminum_decision_variable_values(self):
+        def minimum_decision_variable_values(self):
             return [-5, -5]
 
         def objective_function_value(self, decision_variable_values):

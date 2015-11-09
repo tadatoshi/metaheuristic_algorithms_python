@@ -44,9 +44,9 @@ class SimplifiedParticleSwarmOptimization(BaseAlgorithm):
             for variable_index in range(self.number_of_variables):
 
                 # The value out-of-range in order to enter while loop
-                new_particle_location_coordinate = self.function_wrapper.miminum_decision_variable_values()[variable_index] - 1
+                new_particle_location_coordinate = self.function_wrapper.minimum_decision_variable_values()[variable_index] - 1
 
-                while new_particle_location_coordinate < self.function_wrapper.miminum_decision_variable_values()[variable_index] or new_particle_location_coordinate > self.function_wrapper.maximum_decision_variable_values()[variable_index]:
+                while new_particle_location_coordinate < self.function_wrapper.minimum_decision_variable_values()[variable_index] or new_particle_location_coordinate > self.function_wrapper.maximum_decision_variable_values()[variable_index]:
                     new_particle_location_coordinate = (1 - social_coefficient) * particle_location[variable_index] + social_coefficient * global_best_position[variable_index] + random_variable_coefficient * (random.random() - 0.5)
                 
                 decision_variable_values.append(new_particle_location_coordinate)
