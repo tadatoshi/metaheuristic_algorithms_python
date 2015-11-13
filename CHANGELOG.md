@@ -1,3 +1,7 @@
+## metaheuristic_algorithms_python 0.1.3 (November 12, 2015) ##
+
+* Added Firefly Algorithm
+
 ## metaheuristic_algorithms_python 0.1.2 (November 9, 2015) ##
 
 * Fixed a typo in method name minimum_decision_variable_values in FunctionWrapper's.

@@ -30,6 +30,8 @@ It's not tested on Python 2.6 or 2.7 yet.
 
 * Simulated Annealing
 
+* Firefly Algorithm
+
 ## Usage
 
 Step 1. Create a Function Wrapper for your objective function by extending MetaheuristicAlgorithms::FunctionWrappers::AbstractWrapper
