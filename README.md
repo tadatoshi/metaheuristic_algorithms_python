@@ -18,7 +18,7 @@ pip3 install metaheuristic_algorithms_python
 
 ## Supported Platforms
 
-* Python 3.4. 
+* Python 3.5. 
 
 It's not tested on Python 2.6 or 2.7 yet. 
 
@@ -31,6 +31,10 @@ It's not tested on Python 2.6 or 2.7 yet.
 * Simulated Annealing
 
 * Firefly Algorithm
+
+Algorithms under construction:
+
+* Genetic Algorithm
 
 ## Usage
 
@@ -102,4 +106,8 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/tadato
 ## License
 
 The project is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## References
+
+X.-S. Yang, Engineering Optimization : An Introduction with Metaheuristic Applications. Hoboken, New Jersey, United States: John Wiley & Sons, 2010.
 

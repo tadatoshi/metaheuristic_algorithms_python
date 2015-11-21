@@ -68,6 +68,7 @@ setup(
         # 'Programming Language :: Python :: 3.2',
         # 'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
 
     # What does your project relate to?
@@ -77,7 +78,7 @@ setup(
     # simple. Or you can use find_packages().
     # packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     # packages=find_packages(exclude=['tests']),
-    packages=['metaheuristic_algorithms', 'tests'], 
+    packages=['metaheuristic_algorithms', 'metaheuristic_algorithms.function_wrappers', 'tests.metaheuristic_algorithms'], 
 
     # Alternatively, if you want to distribute just a my_module.py, uncomment
     # this:
