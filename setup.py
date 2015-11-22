@@ -9,11 +9,18 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
-here = path.abspath(path.dirname(__file__))
+# here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+# with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+#     long_description = f.read()
+readme_file = path.join(path.dirname(__file__), 'README.md')
+# When installing locally, the file is not found:
+if path.isfile(readme_file):
+    with open(readme_file, encoding='utf-8') as f:
+        long_description = f.read()
+else:
+    long_description = 'Various metaheuristic algorithms implemented in Python.'
 
 # TODO: Modify to use one of the techniques described in https://packaging.python.org/en/latest/single_source_version.html
 # imports __version__ into the local namespace
@@ -120,4 +127,9 @@ setup(
     #         'sample=sample:main',
     #     ],
     # },
+    entry_points={
+        'console_scripts': [
+            'metaheuristic_algorithms_python=metaheuristic_algorithms.command_line:main',
+        ],
+    },
 )
