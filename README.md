@@ -4,7 +4,7 @@ Various metaheuristic algorithms implemented in Python.
 
 This is equivalent to MetaheuristicAlgorithms written in Ruby (https://github.com/tadatoshi/metaheuristic_algorithms). The reason why I wrote it in Python is that I would like to potentially utilize Python's Scientific Computing libraries. 
 
-As a programming lanugage, I prefer Ruby, because it's fully Object-Oriented programming language (also Dynamic language) and because it has a community with the culture of writing unit tests. Both of these characteristics lead to cleaner, well structured, easy-to-maintain codes. Also it's easier to understand the other people's codes written in such a way. 
+As a programming lanugage, I prefer Ruby, because it's fully Object-Oriented programming language (also Dynamic language) and because it has a community with the culture of writing unit tests. Both of these characteristics lead to cleaner, well structured, easy-to-maintain codes. Also it's easier to understand other people's codes written in such a way. 
 
 But scientists use Python for their activities such as Scientific Computing, Optimization, Data Science, Data Mining, Machine Learning etc. In other words, Python has a community of scientists.  
 
@@ -36,7 +36,23 @@ Algorithms under construction:
 
 * Genetic Algorithm
 
+## Provided Objective Functions
+
+Function Wrappers (See "Usage" section below) for the following Objective Functions are available in metaheuristic_algorithms.function_wrappers package
+
+(You can write your own Fuction Wrapper for your Objective Function. See "Usage" section below.)
+
+* Nonsmooth Multipeak Function
+
+* Easom Function
+
+* Rosenbrook Function
+
+* Michaelwicz Function
+
 ## Usage
+
+### Programming
 
 Step 1. Create a Function Wrapper for your objective function by extending MetaheuristicAlgorithms::FunctionWrappers::AbstractWrapper
 
@@ -92,6 +108,30 @@ Step 2. Instantiate the created Function Wrapper and pass it as the first argume
     print(result["best_decision_variable_values"][0]) # x value: Example: 1.0112
     print(result["best_decision_variable_values"][1]) # y value: Example: 0.9988
     print(result["best_objective_function_value"])    # f(x,y) value: Example: 0.0563    
+```
+
+### Command line execution
+
+Examples: 
+
+* Firefly Algorithm:
+```
+    $ metaheuristic_algorithms_python --objective_function 'nonsmooth_multipeak_function' --number_of_variables 2 --objective 'maximization' firefly_algorithm --number_of_fireflies 10 --maximun_generation 10 --randomization_parameter_alpha 0.2 --absorption_coefficient_gamma 1.0
+```    
+
+* Harmony Search:
+```
+    $ metaheuristic_algorithms_python --objective_function 'rosenbrook_function' --number_of_variables 2 --objective 'minimization' harmony_search --maximum_attempt 25000 --pitch_adjusting_range 100 --harmony_search_size 20 --harmony_memory_acceping_rate 0.95 --pitch_adjusting_rate 0.7
+```    
+
+* Simplified Particle Swarm Optimization:
+```
+    $ metaheuristic_algorithms_python --objective_function 'michaelwicz_function' --number_of_variables 2 --objective 'minimization' simplified_particle_swarm_optimization --number_of_particiles 20 --number_of_iterations 15 --social_coefficient 0.5 --random_variable_coefficient 0.2
+```    
+
+* Simulated Annealing:
+```
+    $ metaheuristic_algorithms_python --objective_function 'rosenbrook_function' --number_of_variables 2 --objective 'minimization' simulated_annealing --temperature 1.0 --minimal_temperature 1e-10 --maximum_number_of_rejections 2500 --maximum_number_of_runs 500 --maximum_number_of_acceptances 15 --bolzmann_constant 1 --cooling_factor 0.95 --energy_norm 1e-8 --standard_diviation_for_estimation 1 --ratio_of_energy_delta_over_evaluation_delta 1
 ```
 
 ## Development
