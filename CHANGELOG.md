@@ -1,3 +1,7 @@
+## metaheuristic_algorithms_python 0.1.5 (November 22, 2015) ##
+
+* Added command line script. 
+
 ## metaheuristic_algorithms_python 0.1.4 (November 21, 2015) ##
 
 * Fixed packages in setup.py so that metaheuristic_algorithms_python.function_wrappers subpackage is included. 
