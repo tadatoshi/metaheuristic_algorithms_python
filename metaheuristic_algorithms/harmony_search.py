@@ -46,8 +46,6 @@ class HarmonySearch(BaseAlgorithm):
             self.__harmony_memory.append(decision_variable_values)
             self.__best_function_value_harmony_memory.append(self.function_wrapper.objective_function_value(decision_variable_values))
 
-        print("min(self.__best_function_value_harmony_memory)=", min(self.__best_function_value_harmony_memory))
-
     def __get_decision_variable(self, variable_index, pitch_adjusting_range, harmony_search_size, harmony_memory_acceping_rate, pitch_adjusting_rate):
                   
         if random.random() > harmony_memory_acceping_rate:
