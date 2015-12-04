@@ -52,9 +52,9 @@ class SimulatedAnnealing(BaseAlgorithm):
                 value_for_exp_for_acceptance_probability = self.__value_for_exp_for_acceptance_probability(evaluation_delta, temperature, bolzmann_constant)
 
             # Accept if improved:
-            # When objective = :maximization, "if evaluation_delta > 0 && evaluation_delta > energy_norm"
-            # When objective = :minimization, "if evaluation_delta < 0 && -evaluation_delta > energy_norm"
-            if self.__compare_evaluation_delta(evaluation_delta, 0) and abs(evaluation_delta) > energy_norm:
+            # When evaluation_delta > energy_norm"
+            # When -evaluation_delta > energy_norm"
+            if self.__compare_evaluation_delta_with_energy_norm(evaluation_delta, energy_norm):
                 best_solution = new_estimates
                 best_evaluation = new_evaluation
                 number_of_acceptances = number_of_acceptances + 1
@@ -91,13 +91,15 @@ class SimulatedAnnealing(BaseAlgorithm):
     def __value_for_exp_for_acceptance_probability(self, evaluation_delta, temperature, bolzmann_constant):
         return -evaluation_delta / (bolzmann_constant * temperature)
 
-    # evaluation_delta > comparison_value or evaluation_delta < comparison_value
-    def __compare_evaluation_delta(self, evaluation_delta, comparison_value):
+    # evaluation_delta > energy_norm or -evaluation_delta > energy_norm
+    def __compare_evaluation_delta_with_energy_norm(self, evaluation_delta, energy_norm):
 
         if self.objective == "maximization":
-            comparison_result = evaluation_delta > comparison_value
+            # Basically, this means that if new evaluation is bigger than old evaluation, which is good for maximization and that if the difference is bigger than energy norm:
+            comparison_result = evaluation_delta > energy_norm
         elif self.objective == "minimization":
-            comparison_result = evaluation_delta < comparison_value
+            # Basically, this means that if new evaluation is smaller than old evaluation, which is good for minimization and that if the difference is bigger than energy norm:
+            comparison_result = -evaluation_delta > energy_norm
 
         return comparison_result
 
