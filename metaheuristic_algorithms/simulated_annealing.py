@@ -42,8 +42,14 @@ class SimulatedAnnealing(BaseAlgorithm):
 
             new_estimates = self.__estimate_solution(initial_estimates, standard_diviation_for_estimation)
             new_evaluation = self.function_wrapper.objective_function_value(new_estimates)
+            evaluation_delta = ratio_of_energy_delta_over_evaluation_delta * (new_evaluation - best_evaluation)                
 
-            evaluation_delta = ratio_of_energy_delta_over_evaluation_delta * (new_evaluation - best_evaluation)
+            # Since "exp" in self.__acceptance_probability() gives "OverflowError: math range error" when the value for "exp" is greater than 700 (acutally 709.782712893384 = log(1.7976931348623157e+308)), 
+            # get the new new_estimates until that value becomes less than 700:
+            while self.__value_for_exp_for_acceptance_probability(evaluation_delta, temperature, bolzmann_constant) > 700.0:
+                new_estimates = self.__estimate_solution(initial_estimates, standard_diviation_for_estimation)
+                new_evaluation = self.function_wrapper.objective_function_value(new_estimates)
+                evaluation_delta = ratio_of_energy_delta_over_evaluation_delta * (new_evaluation - best_evaluation)
 
             # Accept if improved:
             # When objective = :maximization, "if evaluation_delta > 0 && evaluation_delta > energy_norm"
@@ -79,7 +85,11 @@ class SimulatedAnnealing(BaseAlgorithm):
         return new_estimate
 
     def __acceptance_probability(self, evaluation_delta, temperature, bolzmann_constant):
-        exp(-evaluation_delta / (bolzmann_constant * temperature))     
+        return exp(self.__value_for_exp_for_acceptance_probability(evaluation_delta, temperature, bolzmann_constant))   
+
+    # Since the check is needed so that "exp" doesn't give "OverflowError: math range error":
+    def __value_for_exp_for_acceptance_probability(self, evaluation_delta, temperature, bolzmann_constant):
+        return -evaluation_delta / (bolzmann_constant * temperature)
 
     # evaluation_delta > comparison_value or evaluation_delta < comparison_value
     def __compare_evaluation_delta(self, evaluation_delta, comparison_value):

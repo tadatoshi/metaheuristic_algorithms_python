@@ -28,13 +28,13 @@ It's not tested on Python 2.6 or 2.7 yet.
 
 * Simplified Particle Swarm Optimization
 
-* Simulated Annealing
-
 * Firefly Algorithm
 
 Algorithms under construction:
 
 * Genetic Algorithm
+
+* Simulated Annealing
 
 ## Provided Objective Functions
 

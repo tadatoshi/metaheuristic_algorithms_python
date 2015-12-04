@@ -4,6 +4,7 @@ from metaheuristic_algorithms.function_wrappers.rosenbrook_function_wrapper impo
 
 class TestSimulatedAnnealing(unittest.TestCase):
 
+    @unittest.skip("Execution takes too long")
     def test_find_glocal_minimum_for_rosenbrook_function(self):
 
         rosenbrook_function_wrapper = RosenbrookFunctionWrapper()
