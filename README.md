@@ -28,13 +28,13 @@ It's not tested on Python 2.6 or 2.7 yet.
 
 * Simplified Particle Swarm Optimization
 
+* Simulated Annealing
+
 * Firefly Algorithm
 
 Algorithms under construction:
 
 * Genetic Algorithm
-
-* Simulated Annealing
 
 ## Provided Objective Functions
 
@@ -150,4 +150,8 @@ The project is available as open source under the terms of the [MIT License](htt
 ## References
 
 X.-S. Yang, Engineering Optimization : An Introduction with Metaheuristic Applications. Hoboken, New Jersey, United States: John Wiley & Sons, 2010.
+
+(Note: I found a bug in the sample MatLab code for Simulated Annealing in page 271 of the book. 
+       In the code under the comment "% Accept with the small probability if now improved", 
+       the first condition in the if statement should be: -DeltaE<=Enorm)
 

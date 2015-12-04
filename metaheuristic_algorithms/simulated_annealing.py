@@ -40,21 +40,21 @@ class SimulatedAnnealing(BaseAlgorithm):
                 number_of_runs = 1
                 number_of_acceptances = 1
 
-            new_estimates = self.__estimate_solution(initial_estimates, standard_diviation_for_estimation)
-            new_evaluation = self.function_wrapper.objective_function_value(new_estimates)
-            evaluation_delta = ratio_of_energy_delta_over_evaluation_delta * (new_evaluation - best_evaluation)                
+            # The value out-of-range in order to enter while loop
+            value_for_exp_for_acceptance_probability = 800
 
             # Since "exp" in self.__acceptance_probability() gives "OverflowError: math range error" when the value for "exp" is greater than 700 (acutally 709.782712893384 = log(1.7976931348623157e+308)), 
             # get the new new_estimates until that value becomes less than 700:
-            while self.__value_for_exp_for_acceptance_probability(evaluation_delta, temperature, bolzmann_constant) > 700.0:
+            while value_for_exp_for_acceptance_probability > 700.0:
                 new_estimates = self.__estimate_solution(initial_estimates, standard_diviation_for_estimation)
                 new_evaluation = self.function_wrapper.objective_function_value(new_estimates)
                 evaluation_delta = ratio_of_energy_delta_over_evaluation_delta * (new_evaluation - best_evaluation)
+                value_for_exp_for_acceptance_probability = self.__value_for_exp_for_acceptance_probability(evaluation_delta, temperature, bolzmann_constant)
 
             # Accept if improved:
             # When objective = :maximization, "if evaluation_delta > 0 && evaluation_delta > energy_norm"
             # When objective = :minimization, "if evaluation_delta < 0 && -evaluation_delta > energy_norm"
-            if self.__compare_evaluation_delta(evaluation_delta, 0) or abs(evaluation_delta) > energy_norm:
+            if self.__compare_evaluation_delta(evaluation_delta, 0) and abs(evaluation_delta) > energy_norm:
                 best_solution = new_estimates
                 best_evaluation = new_evaluation
                 number_of_acceptances = number_of_acceptances + 1
